@@ -23,6 +23,8 @@ public final class FasterCrystals extends JavaPlugin implements @NotNull Listene
     getServer().getPluginManager().registerEvents(this, this);
     protocolManager = ProtocolLibrary.getProtocolManager();
     getLogger().info("FasterCrystals Enabled");
+    getConfig().addDefault("ping", "150");
+    saveDefaultConfig();
   }
 
   @Override
@@ -33,7 +35,8 @@ public final class FasterCrystals extends JavaPlugin implements @NotNull Listene
 
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-    if (event.getDamager() instanceof Player player && event.getEntity() instanceof EnderCrystal && player.getPing() >= 150) {
+    int pingConfig = getConfig().getInt("ping");
+    if (event.getDamager() instanceof Player player && event.getEntity() instanceof EnderCrystal && player.getPing() >= pingConfig) {
       PacketContainer destroyEntityPacket = new PacketContainer(PacketType.Play.Server.ENTITY_DESTROY);
 
       List<Integer> crystalIDs = new ArrayList<>();
@@ -43,5 +46,4 @@ public final class FasterCrystals extends JavaPlugin implements @NotNull Listene
       protocolManager.sendServerPacket(player, destroyEntityPacket);
     }
   }
-
 }
