@@ -17,6 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 public final class FasterCrystals extends JavaPlugin implements @NotNull Listener {
   private ProtocolManager protocolManager;
+
   @Override
   public void onEnable() {
     // Plugin startup logic
@@ -36,8 +37,10 @@ public final class FasterCrystals extends JavaPlugin implements @NotNull Listene
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
     int pingConfig = getConfig().getInt("ping");
-    if (event.getDamager() instanceof Player player && event.getEntity() instanceof EnderCrystal && player.getPing() >= pingConfig) {
-      PacketContainer destroyEntityPacket = new PacketContainer(PacketType.Play.Server.ENTITY_DESTROY);
+    if (event.getDamager() instanceof Player player && event.getEntity() instanceof EnderCrystal &&
+        player.getPing() >= pingConfig) {
+      PacketContainer destroyEntityPacket =
+          new PacketContainer(PacketType.Play.Server.ENTITY_DESTROY);
 
       List<Integer> crystalIDs = new ArrayList<>();
       crystalIDs.add(event.getEntity().getEntityId());
