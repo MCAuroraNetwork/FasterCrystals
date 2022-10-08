@@ -1,9 +1,0 @@
-name: FasterCrystals
-version: '1.0-SNAPSHOT'
-main: fastercrystals.fastercrystals.FasterCrystals
-api-version: 1.19
-authors: [ Villagers654 ]
-description: Makes crystals fast
-website: aurorapvp.club
-depend:
-  - ProtocolLib
