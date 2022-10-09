@@ -26,8 +26,6 @@ public final class FasterCrystals extends JavaPlugin implements @NotNull Listene
     getLogger().info("FasterCrystals Enabled");
     getConfig().addDefault("ping", "150");
     saveDefaultConfig();
-    getConfig().options().copyDefaults(true);
-    saveConfig();
   }
 
   @Override
